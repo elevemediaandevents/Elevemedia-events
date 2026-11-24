@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eleve Studio</title>
+<meta name="description" content="Animation, motion graphics and high-end visual design by Eleve Media & Events, Kingdom of Bahrain.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+/* VOICE occasion: a studio's front door, confident and cinematic
+   IDEA an animator's graph editor: easing curves, keyframes, a playhead
+   PICTURE live motion curves with keyframe diamonds and a sweeping playhead
+   COLOUR ink #07090b ground, brand green #00ff80 accent, warm gold #e8b863 support
+   TYPE Instrument Sans display + text, Instrument Serif for numerals
+   LAYOUT title across the top, graph editor full width beneath; phone stacks */
+:root{color-scheme:dark;--bg:#07090b;--panel:#101317;--panel2:#151a1f;--ink:#f3f5f1;--mut:#97a1a7;--line:rgba(255,255,255,.09);--acc:#00ff80;--gold:#e8b863}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Instrument Sans",system-ui,sans-serif;overflow-x:clip}
+a{color:inherit}
+img,svg{max-width:100%}
+.wrap{width:min(1180px,100%);margin-inline:auto}
+.band{padding:clamp(56px,8vw,112px) max(5vw,16px)}
+h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.025em;line-height:1.05;text-wrap:balance}
+h1{font-size:clamp(42px,7vw,88px);letter-spacing:-.04em}
+h2{font-size:clamp(32px,4.4vw,52px)}
+h3{font-size:20px;letter-spacing:-.01em;line-height:1.25}
+p{margin:0}
+.lead{font-size:clamp(17px,1.6vw,19px);color:var(--mut);max-width:58ch;text-wrap:pretty}
+.mut{color:var(--mut)}
+.kick{font-size:14px;font-weight:600;color:var(--acc);margin-bottom:14px}
+nav{position:sticky;top:0;z-index:5;background:rgba(7,9,11,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:14px max(5vw,16px)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{font-weight:700;font-size:21px;letter-spacing:-.03em;text-decoration:none;white-space:nowrap}
+.logo i{font:italic 400 23px "Instrument Serif",serif;color:var(--acc);letter-spacing:0}
+.links{display:flex;align-items:center;gap:28px}
+.links a{text-decoration:none;color:var(--mut);font-size:15px;font-weight:500}
+.links a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 22px;border-radius:999px;text-decoration:none;font-weight:600;font-size:15px;white-space:nowrap;border:1px solid transparent;transition:transform .2s,background .2s}
+.btn svg{width:16px;height:16px}
+.btn.p{background:var(--acc);color:#07090b}
+.btn.p:hover{background:#5dffad}
+.btn.s{border-color:rgba(255,255,255,.16);background:rgba(255,255,255,.04);color:var(--ink)}
+.btn.s:hover{background:rgba(255,255,255,.09)}
+.btn:focus-visible,.links a:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+.links .btn{min-height:40px;padding:0 16px;color:#07090b}
+/* hero */
+.hero{padding-top:clamp(44px,6vw,80px);padding-bottom:0}
+.htop{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:40px;align-items:end}
+.htop .side{display:grid;gap:22px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+.editor{margin-top:clamp(36px,5vw,56px);background:var(--panel);border:1px solid var(--line);border-radius:22px;overflow:hidden}
+.ebar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px;border-bottom:1px solid var(--line);font-size:13px;color:var(--mut)}
+.ebar b{color:var(--ink);font-weight:600}
+.dots{display:flex;gap:6px}.dots i{width:10px;height:10px;border-radius:50%;background:#2a3036}
+.tc{font:italic 400 18px "Instrument Serif",serif;color:var(--acc);font-variant-numeric:tabular-nums;white-space:nowrap}
+.fig{position:relative;height:clamp(260px,32vw,380px)}
+.fig>svg{position:absolute;inset:0;width:100%;height:100%}
+.fig text{font:500 13px "Instrument Sans",sans-serif;fill:var(--mut);paint-order:stroke;stroke:var(--panel);stroke-width:4px}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line)}
+.stats div{padding:22px 24px;border-left:1px solid var(--line)}
+.stats div:first-child{border-left:0}
+.stats b{display:block;font:400 clamp(34px,4vw,46px)/1 "Instrument Serif",serif;letter-spacing:-.01em;margin-bottom:6px}
+.stats span{font-size:14px;color:var(--mut)}
+/* ticker */
+.ticker{overflow:hidden;border-block:1px solid var(--line);margin-top:clamp(56px,7vw,96px);padding:20px 0}
+.track{display:flex;gap:48px;width:max-content;animation:tick 38s linear infinite}
+.track span{display:flex;align-items:center;gap:48px;font-size:clamp(20px,2.4vw,28px);font-weight:500;letter-spacing:-.02em;white-space:nowrap}
+.track span::after{content:"";width:12px;height:12px;background:var(--acc);transform:rotate(45deg);border-radius:2px}
+@keyframes tick{to{transform:translateX(-50%)}}
+/* work */
+.head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:20px 40px;margin-bottom:40px}
+.head .lead{max-width:40ch}
+.grid{display:grid;gap:16px}
+.row{display:flex;gap:16px}
+.row .card{flex:var(--r) 1 0;display:flex;flex-direction:column;background:var(--panel2)}
+.row .card img{position:static;display:block;width:100%;height:auto;aspect-ratio:var(--r)}
+.row .card .cap{position:static;border:0;border-radius:0;background:none;backdrop-filter:none;-webkit-backdrop-filter:none;padding:16px 18px;flex:1}
+.card{position:relative;border-radius:22px;overflow:hidden;background:var(--panel2);border:1px solid var(--line)}
+.card svg{position:absolute;inset:0;width:100%;height:100%;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.card:hover svg{transform:scale(1.04)}
+.cap{position:absolute;left:14px;right:14px;bottom:14px;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 16px;border-radius:14px;background:rgba(7,9,11,.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--line)}
+.cap h3{font-size:17px}
+.cap p{font-size:13px;color:var(--mut)}
+.cap svg{position:static;width:18px;height:18px;flex:none;color:var(--acc)}
+a.card{display:block;text-decoration:none}
+.card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.card:hover img{transform:scale(1.04)}
+.tag{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#07090b;background:var(--acc);border-radius:999px;padding:3px 10px;margin-bottom:6px}
+a.card:focus-visible,.rc:focus-visible,.cimg:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+.sub{margin:72px 0 28px}
+.h3b{font-size:clamp(26px,3vw,36px);letter-spacing:-.03em}
+.reels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.rc{display:block;text-decoration:none;border-radius:18px;overflow:hidden;background:var(--panel);border:1px solid var(--line);transition:background .25s}
+.rc:hover{background:var(--panel2)}
+.rc img{display:block;width:100%;height:auto;aspect-ratio:812/434;object-fit:cover}
+.rc div{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 16px}
+.rc b{font-weight:600}
+.rc span{font-size:13px;color:var(--mut)}
+.rc svg{width:18px;height:18px;color:var(--acc);flex:none}
+.case{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(28px,5vw,64px);align-items:center}
+.cimg{display:block;border-radius:22px;overflow:hidden;border:1px solid var(--line)}
+.cimg img{display:block;width:100%;height:auto}
+.ctext{display:grid;gap:22px}
+dl{margin:0;padding:18px 0;border-block:1px solid var(--line)}
+dt{font-size:14px;font-weight:600;color:var(--acc);margin-bottom:4px}
+dd{margin:0}
+.fart img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.fart{display:block}
+/* services */
+.alt{background:var(--panel)}
+.svc{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.sv{background:var(--bg);border:1px solid var(--line);border-radius:22px;padding:28px;display:grid;align-content:start;gap:44px;transition:background .25s}
+.sv:hover{background:#12161a}
+.ic{width:52px;height:52px;border-radius:14px;background:rgba(0,255,128,.1);display:grid;place-items:center}
+.ic svg{width:26px;height:26px;color:var(--acc)}
+.sv p{color:var(--mut);font-size:15px;margin-top:10px}
+/* process timeline */
+.tl{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;padding-top:44px}
+.tl::before{content:"";position:absolute;left:0;right:0;top:14px;height:2px;background:linear-gradient(90deg,var(--acc),rgba(0,255,128,.15))}
+.step{position:relative}
+.step::before{content:"";position:absolute;top:-38px;left:0;width:16px;height:16px;background:var(--bg);border:2px solid var(--acc);transform:rotate(45deg);border-radius:3px}
+.step .n{font:italic 400 15px "Instrument Serif",serif;color:var(--gold);margin-bottom:6px}
+.step p{color:var(--mut);font-size:15px;margin-top:8px}
+/* feature */
+.feat{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1fr);gap:16px;align-items:stretch}
+.fart{border-radius:22px;overflow:hidden;position:relative;background:#1a1208;aspect-ratio:769/900}
+.fart svg{position:absolute;inset:0;width:100%;height:100%}
+.fq{border-radius:22px;background:var(--acc);color:#07090b;padding:clamp(28px,4vw,44px);display:grid;align-content:space-between;gap:36px}
+.fq .t{font-size:14px;font-weight:600}
+.fq blockquote{margin:0;font-size:clamp(26px,3vw,36px);font-weight:600;letter-spacing:-.03em;line-height:1.12;text-wrap:balance}
+.fq p{font-size:15px;opacity:.72}
+/* contact */
+.contact{border-top:1px solid var(--line)}
+.contact h2{font-size:clamp(42px,7vw,88px);letter-spacing:-.04em;max-width:13ch;margin-bottom:36px}
+.addr{display:flex;flex-wrap:wrap;gap:12px 28px;margin-top:22px;color:var(--mut);font-size:15px}
+.addr b{color:var(--ink);font-weight:600}
+footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 24px;border-top:1px solid var(--line);margin-top:64px;padding-top:28px;font-size:13px;color:var(--mut)}
+@media(max-width:1000px){.svc{grid-template-columns:repeat(2,minmax(0,1fr))}.tl{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:56px}.tl::before{display:none}}
+@media(max-width:860px){.htop{grid-template-columns:minmax(0,1fr);gap:24px}.links a:not(.btn){display:none}}
+@media(max-width:860px){.reels{grid-template-columns:repeat(2,minmax(0,1fr))}.case{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:600px){.reels{grid-template-columns:minmax(0,1fr)}.row{flex-direction:column}.row .card{flex:none;width:100%}.svc,.tl,.feat{grid-template-columns:minmax(0,1fr)}.stats{grid-template-columns:minmax(0,1fr)}.stats div{border-left:0;border-top:1px solid var(--line);padding:16px 18px}.stats div:first-child{border-top:0}.ebar .hide{display:none}}
+
+/* advanced */
+.prog{position:fixed;top:0;left:0;height:3px;width:100%;background:var(--acc);transform-origin:0 50%;transform:scaleX(0);z-index:9}
+.menu{display:none;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--ink);cursor:pointer;place-items:center}
+.menu svg{width:22px;height:22px}
+.drawer{display:none;flex-direction:column;gap:4px;padding:12px max(5vw,16px) 20px;border-bottom:1px solid var(--line);background:rgba(7,9,11,.96)}
+.drawer a{padding:12px 0;font-size:20px;font-weight:600;text-decoration:none;border-bottom:1px solid var(--line)}
+nav.open+.drawer{display:flex}
+.partners{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.pc{position:relative;overflow:hidden;border-radius:22px;padding:clamp(26px,3.5vw,40px);min-height:250px;display:grid;align-content:space-between;gap:28px;border:1px solid var(--line)}
+.pc.ff{background:linear-gradient(135deg,#2a0d12,#5c121f 60%,#8c1a2a);}
+.pc.kn{background:linear-gradient(135deg,#071b2e,#0d3354 60%,#14507e)}
+.pc .badge{justify-self:start;font-size:13px;font-weight:600;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.12)}
+.pc .nm{font:400 clamp(44px,6vw,72px)/1 "Instrument Serif",serif;letter-spacing:-.01em}
+.pc p{color:rgba(255,255,255,.78);max-width:42ch}
+.pc .glow{position:absolute;right:-60px;top:-60px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.16),transparent 70%);pointer-events:none}
+.clients{margin-top:56px;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.lrow{display:flex;gap:16px;width:max-content;animation:tick 45s linear infinite}
+.lrow.rev{animation-direction:reverse;margin-top:16px}
+.clients:hover .lrow{animation-play-state:paused}
+.logo-t{flex:none;width:200px;height:110px;border-radius:16px;background:#013743;display:grid;place-items:center;padding:16px;border:1px solid var(--line)}
+.logo-t img{max-width:100%;max-height:100%;object-fit:contain;border-radius:6px}
+.why{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,5vw,72px);align-items:start}
+.why ol{list-style:none;margin:0;padding:0}
+.why li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:20px;padding:24px 0;border-bottom:1px solid var(--line)}
+.why li:first-child{border-top:1px solid var(--line)}
+.why li b{font-size:19px;font-weight:600}
+.why li span{color:var(--mut)}
+.brief{margin-top:44px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:clamp(20px,3vw,32px)}
+.brief .full{grid-column:1/-1}
+.brief label{display:grid;gap:8px;font-size:14px;font-weight:500;color:var(--mut)}
+.brief input,.brief select,.brief textarea{font:16px "Instrument Sans",sans-serif;color:var(--ink);background:var(--bg);border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:12px 14px;min-height:48px;width:100%}
+.brief textarea{min-height:110px;resize:vertical}
+.brief input:focus,.brief select:focus,.brief textarea:focus{outline:2px solid var(--acc);outline-offset:1px;border-color:transparent}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{font:500 14px "Instrument Sans",sans-serif;min-height:40px;padding:0 16px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:transparent;color:var(--ink);cursor:pointer}
+.chips button[aria-pressed=true]{background:var(--acc);color:#07090b;border-color:var(--acc)}
+.bout{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.bout button{cursor:pointer;font-family:inherit}
+.note{font-size:14px;color:var(--acc)}
+.cursor{position:fixed;left:0;top:0;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;background:var(--acc);color:#07090b;font-weight:700;font-size:14px;display:grid;place-items:center;pointer-events:none;z-index:8;transform:scale(0);transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+.cursor.on{transform:scale(1)}
+@media(max-width:860px){.menu{display:grid}.partners,.why{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:600px){.brief{grid-template-columns:minmax(0,1fr)}.why li{grid-template-columns:minmax(0,1fr);gap:6px}.logo-t{width:150px;height:90px}}
+@media(prefers-reduced-motion:reduce){.lrow{animation:none}.cursor{display:none}}
+@media(prefers-reduced-motion:reduce){.track{animation:none}html{scroll-behavior:auto}.card svg{transition:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="arr" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-film" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="9" width="18" height="11" rx="2"/><path d="m3 9 17-5 1 3.5L4 12.5"/><path d="m8 7.6 2 3.4M13.5 6 15.5 9.4"/></g></symbol>
+<symbol id="i-pen" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3 20 9l-5 11H9L4 9z"/><path d="M12 3v8"/><circle cx="12" cy="12.5" r="1.6"/></g></symbol>
+<symbol id="i-cam" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 8h3.5L9 5.5h6L16.5 8H20a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.6"/></g></symbol>
+<symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 2.5c.8 5 3.5 7.7 8.5 8.5-5 .8-7.7 3.5-8.5 8.5-.8-5-3.5-7.7-8.5-8.5 5-.8 7.7-3.5 8.5-8.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+</svg>
+
+<div class="prog" id="prog"></div>
+<nav id="nav">
+ <div class="wrap">
+  <a class="logo" href="#top">élevé<i> studio</i></a>
+  <div class="links">
+   <a href="#work">Work</a><a href="#services">Services</a><a href="#process">Process</a>
+   <a class="btn p" href="#contact">Let’s talk <svg><use href="#arr"/></svg></a>
+   <button class="menu" id="menu" aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+  </div>
+ </div>
+</nav>
+<div class="drawer" id="drawer"><a href="#work">Work</a><a href="#partners">Partners</a><a href="#services">Services</a><a href="#process">Process</a><a href="#contact">Contact</a></div>
+
+<header class="band hero" id="top">
+ <div class="wrap">
+  <div class="htop">
+   <h1>Motion and design that moves people.</h1>
+   <div class="side">
+    <p class="lead">Eleve Studio is the animation and design arm of Eleve Media &amp; Events. We make motion graphics, brand visuals and scroll-stopping content for brands across Bahrain and the Gulf.</p>
+    <div class="ctas">
+     <a class="btn p" href="#work">See the work <svg><use href="#arr"/></svg></a>
+     <a class="btn s" href="#contact">Start a project</a>
+    </div>
+   </div>
+  </div>
+  <div class="editor" aria-label="Animated graph editor showing easing curves">
+   <div class="ebar">
+    <div class="dots"><i></i><i></i><i></i></div>
+    <span class="hide"><b>Graph editor</b> · brand_reveal_v3</span>
+    <span class="tc" id="tc">00:00:00</span>
+   </div>
+   <div class="fig"><svg id="graph" role="img" aria-label="Motion curves with keyframes and a moving playhead"></svg></div>
+   <div class="stats">
+    <div><b data-n="100" data-s="+">100+</b><span>Clients across Bahrain and the Gulf</span></div>
+    <div><b data-n="40" data-s="M+">40M+</b><span>Audience reach as an official Filmfare partner</span></div>
+    <div><b>One team</b><span>Concept, design, animation and delivery under one roof</span></div>
+   </div>
+  </div>
+ </div>
+</header>
+
+<div class="ticker" aria-hidden="true"><div class="track" id="track"></div></div>
+
+<section class="band" id="partners">
+ <div class="wrap">
+  <div class="head"><div><p class="kick">Partners</p><h2>Trusted by names the region knows.</h2></div><p class="lead">Official partnerships that put our work in front of millions, and clients who come back season after season.</p></div>
+  <div class="partners">
+   <div class="pc ff"><span class="glow"></span><span class="badge">Official partner</span><div><div class="nm">Filmfare</div><p>Content partner to one of the most recognised names in film and entertainment, with a reach of more than 40 million.</p></div></div>
+   <div class="pc kn"><span class="glow"></span><span class="badge">Partner</span><div><div class="nm">Kanoo Bahrain</div><p>Working alongside one of Bahrain’s most established business groups on content and events.</p></div></div>
+  </div>
+  <div class="clients" aria-label="Selected clients"><div class="lrow" id="l1"></div><div class="lrow rev" id="l2"></div></div>
+ </div>
+</section>
+
+
+<section class="band" id="work">
+ <div class="wrap">
+  <div class="head">
+   <div><p class="kick">Selected work</p><h2>Frames worth stopping the scroll for.</h2></div>
+   <p class="lead">Films, commercials and social content for brands across Bahrain and the GCC. Tap any piece to watch it.</p>
+  </div>
+  <div class="grid" id="grid"></div>
+  <div class="head sub"><div><p class="kick">Social content</p><h3 class="h3b">Reels built for the feed.</h3></div></div>
+  <div class="reels" id="reels"></div>
+ </div>
+</section>
+
+<section class="band alt" id="case">
+ <div class="wrap case">
+  <a class="cimg" href="https://www.instagram.com/reel/DUIolPtCMJg/" target="_blank" rel="noopener"><img src="ig-DUIo.jpg" alt="BYD Ramadan campaign reel"></a>
+  <div class="ctext">
+   <p class="kick">Case study · BYD</p>
+   <h2>A Ramadan campaign for BYD.</h2>
+   <p class="lead">As part of our collaboration with BYD, we developed and executed a Ramadan campaign showcasing their latest vehicles and seasonal offers through premium digital content.</p>
+   <dl><dt>Deliverables</dt><dd>Influencer casting, campaign content, videography and creative production</dd></dl>
+   <div class="ctas">
+    <a class="btn p" href="https://www.instagram.com/reel/DUIolPtCMJg/" target="_blank" rel="noopener">Watch reel one <svg><use href="#arr"/></svg></a>
+    <a class="btn s" href="https://www.instagram.com/reel/DVmDyv-jsbx/" target="_blank" rel="noopener">Watch reel two <svg><use href="#arr"/></svg></a>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="band alt" id="services">
+ <div class="wrap">
+  <div class="head"><div><p class="kick">What we make</p><h2>Built to move, designed to last.</h2></div></div>
+  <div class="svc" id="svc"></div>
+ </div>
+</section>
+
+<section class="band" id="why">
+ <div class="wrap why">
+  <div><p class="kick">Why Eleve</p><h2>The difference is in the detail.</h2></div>
+  <ol>
+   <li><b>Cinematic quality</b><span>Premium visual language built for modern brands.</span></li>
+   <li><b>Full production</b><span>Crew, camera, lighting, direction and post under one roof.</span></li>
+   <li><b>Flexible delivery</b><span>Content adapted for campaigns, social platforms and events.</span></li>
+   <li><b>Detail-driven</b><span>Every frame, cut and sound choice has a purpose.</span></li>
+  </ol>
+ </div>
+</section>
+
+<section class="band" id="process">
+ <div class="wrap">
+  <div class="head"><div><p class="kick">How it works</p><h2>From first frame to final cut.</h2></div></div>
+  <div class="tl" id="tl"></div>
+ </div>
+</section>
+
+<section class="band" style="padding-top:0">
+ <div class="wrap feat">
+  <a class="card fart" href="https://www.instagram.com/reel/DWH_Qk2DDv3/" target="_blank" rel="noopener"><img src="ig-DWH_.jpg" alt="Eleve cinematic reel"><div class="cap"><div><h3>Eleve showreel</h3><p>Instagram reel</p></div><svg><use href="#arr"/></svg></div></a>
+  <div class="fq">
+   <p class="t">Official Filmfare partner</p>
+   <blockquote>Every project gets the care of a red-carpet premiere: considered, cinematic and on time.</blockquote>
+   <p>100+ brands trust Eleve with their story.</p>
+  </div>
+ </div>
+</section>
+
+<section class="band contact" id="contact">
+ <div class="wrap">
+  <p class="kick">Start a project</p>
+  <h2>Got a story that needs motion?</h2>
+  <div class="ctas">
+   <a class="btn p" href="mailto:elevemedia4@gmail.com">Email us <svg><use href="#arr"/></svg></a>
+   <a class="btn s" href="https://www.instagram.com/elevemediaandevents/" target="_blank" rel="noopener">Instagram <svg><use href="#arr"/></svg></a>
+  </div>
+  <form class="brief" id="brief" novalidate>
+   <div class="full"><label>What do you need?</label><div class="chips" id="needs" style="margin-top:8px"></div></div>
+   <label>Your name<input id="bn" autocomplete="name" placeholder="Full name"></label>
+   <label>Company<input id="bc" autocomplete="organization" placeholder="Brand or company"></label>
+   <label>Budget<select id="bb"><option>Under 500 BHD</option><option selected>500 to 1,500 BHD</option><option>1,500 to 5,000 BHD</option><option>5,000 BHD and above</option></select></label>
+   <label>Timeline<select id="bt"><option>This month</option><option selected>In 1 to 2 months</option><option>Just exploring</option></select></label>
+   <label class="full">Tell us about the project<textarea id="bm" placeholder="Campaign, launch, event or idea. Links welcome."></textarea></label>
+   <div class="bout"><a class="btn p" id="bmail" href="mailto:elevemedia4@gmail.com">Send by email <svg><use href="#arr"/></svg></a><button type="button" class="btn s" id="bcopy">Copy brief</button><span class="note" id="bnote" role="status"></span></div>
+  </form>
+  <div class="addr">
+   <span>Email <b>elevemedia4@gmail.com</b></span>
+   <span>Instagram <b>@elevemediaandevents</b></span>
+   <span>Phone <b>+973 3300 0638</b></span>
+   <span>Based in <b>Kingdom of Bahrain</b></span>
+  </div>
+  <footer>
+   <span>© 2026 Eleve Media &amp; Events · CR No. 195643-1</span>
+   <span>Animation, motion and design</span>
+  </footer>
+ </div>
+</section>
+
+<script>
+{
+const $=id=>document.getElementById(id);
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const words=["2D & 3D animation","Motion graphics","Brand identity","Social reels","Menu & print design","Product films","Colour grading","Event visuals"];
+$('track').innerHTML=[...words,...words].map(w=>`<span>${w}</span>`).join('');
+
+/* graph editor */
+const s=$('graph');
+const curves=[
+ {c:'#00ff80',w:3,pts:[[0,.82],[.18,.82],[.42,.2],[.62,.28],[.78,.34],[1,.34]],lab:'Position'},
+ {c:'#e8b863',w:2.2,pts:[[0,.55],[.25,.9],[.5,.6],[.72,.7],[1,.48]],lab:'Scale'},
+ {c:'#7aa7ff',w:2,pts:[[0,.3],[.3,.35],[.55,.75],[.85,.62],[1,.66]],lab:'Opacity'}
+];
+let t0=performance.now(),W=0,H=0;
+const draw=now=>{
+ W=s.clientWidth;H=s.clientHeight;if(!W)return;
+ const L=W<520?14:48,R=W<520?14:100,T=26,B=30,iw=W-L-R,ih=H-T-B;
+ const X=x=>L+x*iw,Y=y=>T+y*ih;
+ let g='';
+ const cols=W<520?6:12;
+ for(let i=0;i<=cols;i++){const x=X(i/cols);g+=`<line x1="${x}" x2="${x}" y1="${T}" y2="${H-B}" stroke="rgba(255,255,255,.05)"/>`;if(W>=520&&i%2==0)g+=`<text x="${x}" y="${H-10}" text-anchor="middle">${String(i*5).padStart(2,'0')}f</text>`}
+ for(let j=0;j<=4;j++){const y=Y(j/4);g+=`<line x1="${L}" x2="${W-R}" y1="${y}" y2="${y}" stroke="rgba(255,255,255,.05)"/>`}
+ curves.forEach(cv=>{
+  const p=cv.pts;let d=`M${X(p[0][0])},${Y(p[0][1])}`;
+  for(let i=1;i<p.length;i++){const a=p[i-1],b=p[i],dx=(b[0]-a[0])*.45;d+=` C${X(a[0]+dx)},${Y(a[1])} ${X(b[0]-dx)},${Y(b[1])} ${X(b[0])},${Y(b[1])}`}
+  g+=`<path d="${d}" fill="none" stroke="${cv.c}" stroke-width="${cv.w}" stroke-linecap="round"/>`;
+  p.forEach(q=>{const x=X(q[0]),y=Y(q[1]);g+=`<rect x="${x-5}" y="${y-5}" width="10" height="10" transform="rotate(45 ${x} ${y})" fill="#101317" stroke="${cv.c}" stroke-width="2"/>`});
+  if(W>=520){const e=p[p.length-1];g+=`<text x="${X(1)+12}" y="${Y(e[1])+4}" style="fill:${cv.c}">${cv.lab}</text>`}
+ });
+ const ph=reduce?.42:((now-t0)/6000)%1,px=X(ph);
+ g+=`<line x1="${px}" x2="${px}" y1="${T-8}" y2="${H-B}" stroke="#f3f5f1" stroke-width="1.5"/><path d="M${px-7},${T-16} h14 v6 l-7,7 l-7,-7z" fill="#f3f5f1"/>`;
+ s.innerHTML=g;
+ const fr=Math.floor(ph*60);$('tc').textContent=`00:00:${String(Math.floor(fr/24)).padStart(2,'0')}:${String(fr%24).padStart(2,'0')}`;
+};
+const loop=now=>{draw(now);if(!reduce)requestAnimationFrame(loop)};
+const ro=new ResizeObserver(()=>draw(performance.now()));ro.observe(s);
+requestAnimationFrame(loop);
+
+const YT=id=>'https://youtu.be/'+id, IG=id=>'https://www.instagram.com/reel/'+id+'/';
+const work=[
+ [{i:'yt-ldN0',r:1.737,t:'Dairy Queen',g:'Commercial',p:'YouTube',u:YT('ldN0__0RMxA')},
+  {i:'yt-T_9D',r:.933,t:'Brand commercial',g:'Commercial film',p:'YouTube',u:YT('T_9DZ3u3BgE')}],
+ [{i:'ig-DbYY',r:.975,t:'Brand film',g:'Short film',p:'Instagram',u:IG('DbYYxVRI6EI')},
+  {i:'yt-dd3J',r:1.875,t:'GGN Awards',g:'Event film',p:'YouTube',u:YT('dd3J4rNeW4c')}]
+];
+$('grid').innerHTML=work.map(row=>`<div class="row">${row.map(w=>`<a class="card" style="--r:${w.r}" href="${w.u}" target="_blank" rel="noopener"><img src="${w.i}.jpg" alt="${w.t} video" loading="lazy"><div class="cap"><div><span class="tag">${w.p}</span><h3>${w.t}</h3><p>${w.g}</p></div><svg><use href="#arr"/></svg></div></a>`).join('')}</div>`).join('');
+const reels=[['ig-DdCh','Swiss Butter','DdChUGIo8wa'],['ig-Dcy2','Bindaira','Dcy2PddhfWh'],['ig-DW9K','Dental Zone','DW9KGeSjvxo'],['ig-DTpF','ICC Men’s T20 World Cup','DTpFiNNjPmX'],['ig-DYoq','Miss Universe India 2026','DYoqxrHMqRO'],['ig-DUWI','Black Angus Premium','DUWI7dzDKBR']];
+$('reels').innerHTML=reels.map(([i,t,id])=>`<a class="rc" href="${IG(id)}" target="_blank" rel="noopener"><img src="${i}.jpg" alt="${t} reel" loading="lazy"><div><span><b style="color:var(--ink);display:block">${t}</b>Instagram reel</span><svg><use href="#arr"/></svg></div></a>`).join('');
+
+const svc=[['i-film','Animation and motion','2D and 3D animation, logo reveals, explainers and motion graphics that give your brand a pulse.'],['i-pen','Brand and visual design','Identities, campaign key visuals, menus and print that look as good on a billboard as on a phone.'],['i-cam','Product and food films','Cinematic product shoots and short films, lit, graded and cut for maximum appetite appeal.'],['i-spark','Reels and social content','Platform-native reels and carousels, planned around hooks and built to perform.']];
+$('svc').innerHTML=svc.map(([i,t,d])=>`<div class="sv"><div class="ic"><svg><use href="#${i}"/></svg></div><div><h3>${t}</h3><p>${d}</p></div></div>`).join('');
+
+const tl=[['Frame 0','Brief','We dig into your brand, audience and goal so every frame has a job.'],['Frame 24','Storyboard','Moodboards, scripts and boards. You see the idea before we animate a thing.'],['Frame 48','Design and animate','Our designers and animators build it out, with check-ins along the way.'],['Frame 72','Deliver','Final cuts in every format you need, ready for feeds, screens and print.']];
+$('tl').innerHTML=tl.map(([n,t,d])=>`<div class="step"><p class="n">${n}</p><h3>${t}</h3><p>${d}</p></div>`).join('');
+
+
+
+/* advanced */
+{
+const prog=$('prog');const onScroll=()=>{const h=document.documentElement;prog.style.transform=`scaleX(${h.scrollTop/((h.scrollHeight-h.clientHeight)||1)})`};addEventListener('scroll',onScroll,{passive:true});onScroll();
+const nav=$('nav'),menu=$('menu');menu.addEventListener('click',()=>{const o=nav.classList.toggle('open');menu.setAttribute('aria-expanded',o)});
+$('drawer').addEventListener('click',e=>{if(e.target.tagName==='A'){nav.classList.remove('open');menu.setAttribute('aria-expanded','false')}});
+const logos=['dq','ggn','byd','hilton','papajohns','palavra','shifa','alhilal','3hk','rk'];const names={dq:'Dairy Queen',ggn:'GGN Gulf Good News',byd:'BYD',hilton:'Hilton Bahrain',papajohns:'Papa Johns',palavra:'Palavra Resort',shifa:'Shifa',alhilal:'Al Hilal',['3hk']:'3HK Cricket',rk:'Client logo'};
+const tile=n=>`<div class="logo-t"><img src="${n}.png" alt="${names[n]}" loading="lazy"></div>`;
+const half=logos.slice(0,5),half2=logos.slice(5);
+$('l1').innerHTML=[...half,...half,...half,...half].map(tile).join('');$('l2').innerHTML=[...half2,...half2,...half2,...half2].map(tile).join('');
+const cnt=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;cnt.unobserve(e.target);if(reduce)return;const el=e.target,n=+el.dataset.n,sf=el.dataset.s,t0=performance.now();const step=now=>{const k=Math.min(1,(now-t0)/1400),v=Math.round(n*(1-(1-k)**3));el.textContent=v+sf;if(k<1)requestAnimationFrame(step)};requestAnimationFrame(step)}),{threshold:.6});
+document.querySelectorAll('[data-n]').forEach(el=>cnt.observe(el));
+const needs=['Animation','Commercial','Social reels','Event film','Brand design','Photography'];let sel=new Set(['Commercial']);
+const rc=()=>{$('needs').innerHTML=needs.map(n=>`<button type="button" aria-pressed="${sel.has(n)}">${n}</button>`).join('')};rc();
+$('needs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const n=b.textContent;sel.has(n)?sel.delete(n):sel.add(n);rc();upd()});
+const text=()=>`Project brief for Eleve Media & Events\n\nName: ${$('bn').value||'-'}\nCompany: ${$('bc').value||'-'}\nNeeds: ${[...sel].join(', ')||'-'}\nBudget: ${$('bb').value}\nTimeline: ${$('bt').value}\n\n${$('bm').value}`;
+const upd=()=>{$('bmail').href='mailto:elevemedia4@gmail.com?subject='+encodeURIComponent('New project: '+($('bc').value||'Enquiry'))+'&body='+encodeURIComponent(text())};
+$('brief').addEventListener('input',upd);$('brief').addEventListener('submit',e=>e.preventDefault());upd();
+$('bcopy').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(text());$('bnote').textContent='Brief copied. Paste it into an email to elevemedia4@gmail.com.'}catch(err){$('bnote').textContent='Copy was blocked. Email elevemedia4@gmail.com directly.'}});
+if(matchMedia('(pointer:fine)').matches&&!reduce){const c=document.createElement('div');c.className='cursor';c.textContent='Watch';document.body.appendChild(c);
+addEventListener('pointermove',e=>{c.style.left=e.clientX+'px';c.style.top=e.clientY+'px';c.classList.toggle('on',!!e.target.closest('a.card,a.rc,a.cimg'))},{passive:true})}
+}
+}
+</script>
+</body>
+</html>
