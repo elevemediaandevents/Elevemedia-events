@@ -150,7 +150,7 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 24px;b
 .drawer{display:none;flex-direction:column;gap:4px;padding:12px max(5vw,16px) 20px;border-bottom:1px solid var(--line);background:rgba(7,9,11,.96)}
 .drawer a{padding:12px 0;font-size:20px;font-weight:600;text-decoration:none;border-bottom:1px solid var(--line)}
 nav.open+.drawer{display:flex}
-.partners{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.partners{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
 .pc{position:relative;overflow:hidden;border-radius:22px;padding:clamp(26px,3.5vw,40px);min-height:250px;display:grid;align-content:space-between;gap:28px;border:1px solid var(--line)}
 .pc.ff{background:linear-gradient(135deg,#2a0d12,#5c121f 60%,#8c1a2a);}
 .pc.kn{background:linear-gradient(135deg,#071b2e,#0d3354 60%,#14507e)}
@@ -244,10 +244,9 @@ nav.open+.drawer{display:flex}
 
 <section class="band" id="partners">
  <div class="wrap">
-  <div class="head"><div><p class="kick">Partners</p><h2>Trusted by names the region knows.</h2></div><p class="lead">Official partnerships that put our work in front of millions, and clients who come back season after season.</p></div>
+  <div class="head"><div><p class="kick">Partners</p><h2>Trusted by names the region knows.</h2></div><p class="lead">An official Filmfare partnership that puts our work in front of millions, and clients who come back season after season.</p></div>
   <div class="partners">
    <div class="pc ff"><span class="glow"></span><span class="badge">Official partner</span><div><div class="nm">Filmfare</div><p>Content partner to one of the most recognised names in film and entertainment, with a reach of more than 40 million.</p></div></div>
-   <div class="pc kn"><span class="glow"></span><span class="badge">Partner</span><div><div class="nm">Kanoo Bahrain</div><p>Working alongside one of Bahrain’s most established business groups on content and events.</p></div></div>
   </div>
   <div class="clients" aria-label="Selected clients"><div class="lrow" id="l1"></div><div class="lrow rev" id="l2"></div></div>
  </div>
@@ -413,9 +412,9 @@ $('tl').innerHTML=tl.map(([n,t,d])=>`<div class="step"><p class="n">${n}</p><h3>
 const prog=$('prog');const onScroll=()=>{const h=document.documentElement;prog.style.transform=`scaleX(${h.scrollTop/((h.scrollHeight-h.clientHeight)||1)})`};addEventListener('scroll',onScroll,{passive:true});onScroll();
 const nav=$('nav'),menu=$('menu');menu.addEventListener('click',()=>{const o=nav.classList.toggle('open');menu.setAttribute('aria-expanded',o)});
 $('drawer').addEventListener('click',e=>{if(e.target.tagName==='A'){nav.classList.remove('open');menu.setAttribute('aria-expanded','false')}});
-const logos=['dq','ggn','byd','hilton','papajohns','palavra','shifa','alhilal','3hk','rk'];const names={dq:'Dairy Queen',ggn:'GGN Gulf Good News',byd:'BYD',hilton:'Hilton Bahrain',papajohns:'Papa Johns',palavra:'Palavra Resort',shifa:'Shifa',alhilal:'Al Hilal',['3hk']:'3HK Cricket',rk:'Client logo'};
-const tile=n=>`<div class="logo-t"><img src="${n}.png" alt="${names[n]}" loading="lazy"></div>`;
-const half=logos.slice(0,5),half2=logos.slice(5);
+const logos=['dq','ggn','byd','hilton','kanoo','papajohns','palavra','shifa','alhilal','3hk','rk'];const names={dq:'Dairy Queen',ggn:'GGN Gulf Good News',byd:'BYD',hilton:'Hilton Bahrain',papajohns:'Papa Johns',palavra:'Palavra Resort',shifa:'Shifa',alhilal:'Al Hilal',['3hk']:'3HK Cricket',rk:'Client logo'};
+const tile=n=>n==='kanoo'?`<div class="logo-t"><span style="font:600 22px 'Instrument Sans',sans-serif;letter-spacing:-.01em;text-align:center;line-height:1.15">Kanoo<br><span style="font-size:14px;font-weight:500;color:var(--mut)">Bahrain</span></span></div>`:`<div class="logo-t"><img src="${n}.png" alt="${names[n]}" loading="lazy"></div>`;
+const half=logos.slice(0,6),half2=logos.slice(6);
 $('l1').innerHTML=[...half,...half,...half,...half].map(tile).join('');$('l2').innerHTML=[...half2,...half2,...half2,...half2].map(tile).join('');
 const cnt=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;cnt.unobserve(e.target);if(reduce)return;const el=e.target,n=+el.dataset.n,sf=el.dataset.s,t0=performance.now();const step=now=>{const k=Math.min(1,(now-t0)/1400),v=Math.round(n*(1-(1-k)**3));el.textContent=v+sf;if(k<1)requestAnimationFrame(step)};requestAnimationFrame(step)}),{threshold:.6});
 document.querySelectorAll('[data-n]').forEach(el=>cnt.observe(el));
